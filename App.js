@@ -1,20 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+
+
+import RootStack from './navigators/RootStack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CredentialsContext } from './CredentialsContext';
 
 export default function App() {
+  const [appReady, setAppReady] = useState(false);
+  const [storedCredentials, setStoredCredentials] = useState('');
+
+  useEffect(() => {
+    async function checkLoginCredentials() {
+      try {
+        const result = await AsyncStorage.getItem('projectKapaCredentials');
+        if (result !== null) {
+          setStoredCredentials(JSON.parse(result));
+        } else {
+          setStoredCredentials(null);
+        }
+        setAppReady(true);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    SplashScreen.preventAutoHideAsync();
+    checkLoginCredentials();
+  }, []);
+
+  if (!appReady) {
+    return null;
+  }
+
+  SplashScreen.hideAsync();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <CredentialsContext.Provider value={{ storedCredentials, setStoredCredentials }}>
+      <RootStack />
+    </CredentialsContext.Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
