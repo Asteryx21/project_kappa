@@ -156,6 +156,19 @@ export const MapOverlay = styled.View`
   bottom: 0px;
 `;
 
+export const MyTextInput = styled.TextInput`
+    background-color: ${secondary};
+    padding: 15px;
+    padding-left: 55px;
+    padding-right: 55px;
+    border-radius: 5px;
+    font-size: 16px;
+    height:60px;
+    margin-vertical:3px;
+    margin-bottom:10px;
+    color: ${tertiary};
+`;
+
 export const UploadTextInput = styled.TextInput`
     background-color: ${secondary};
     padding-left:10px;
@@ -166,4 +179,17 @@ export const UploadTextInput = styled.TextInput`
     margin-vertical: 3px;
     margin-bottom: 10px;
     color: ${tertiary};
+`;
+
+
+export const DescriptionTextInput = styled.TextInput`
+    background-color: ${secondary};
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    height: 100px;
+    margin-vertical: 3px;
+    margin-bottom: 10px;
+    color: ${tertiary};
+    text-align-vertical: top;
 `;

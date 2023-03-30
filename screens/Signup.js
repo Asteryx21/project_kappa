@@ -30,7 +30,7 @@ import KeyboardWrapper from '../KeyboardWrapper';
 
 export default function Signup({navigation})  {
 
-  const  [hidePassword, setHidePassword] = useState(true);
+  const [hidePassword, setHidePassword] = useState(true);
   const [message, setMessage] = useState();
   const [messageType, setMessageType] = useState();
 

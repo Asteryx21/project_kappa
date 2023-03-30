@@ -1,12 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
-import { MapOverlay, MapContainer,UploadTextInput } from '../styles/styles';
+import { Text, View, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 
-export default function MapScreen() {
+import {Formik} from 'formik';
+
+import {
+  UploadTextInput,
+  MapOverlay,
+  MapContainer,
+  DescriptionTextInput,
+  InnerContainer,
+  SubTitle,
+  StyledFormArea,
+  StyledButton,
+  ButtonText,
+  Colors,
+  MsgBox,
+} from '../styles/styles'
+
+import KeyboardWrapper from '../KeyboardWrapper';
+
+
+export default function Maps() {
   const [locations, setLocations] = useState([]);
-  const [selectedGreenLocation, setSelectedGreenLocation] = useState('');
-  const [selectedRedLocation, setSelectedRedLocation] = useState({ description: '', image: '' });
+
   const [showOverlay, setShowOverlay] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [currentPosition, setCurrentPosition] = useState(null);
@@ -25,8 +42,7 @@ export default function MapScreen() {
 
   const handleOverlayClose = () => {
     setShowOverlay(false);
-    setSelectedGreenLocation('');
-    setSelectedRedLocation({ description: '', image: '' });
+
   };
 
   const handleMapPress = (event) => {
@@ -90,13 +106,64 @@ export default function MapScreen() {
             </View>
           )}
           {selectedLocation.type === 'undefined' && (
-            <View>
-              <UploadTextInput editable={false} >{selectedLocation.latitude}</UploadTextInput>
-              <UploadTextInput editable={false} >{selectedLocation.longitude}</UploadTextInput>
-            </View>
+            <KeyboardWrapper>
+            
+              <InnerContainer>
+                <SubTitle>Αναφορά περιοχής</SubTitle>
+                <Formik
+                  initialValues={{latitude: `${selectedLocation.latitude}`,  longitude: `${selectedLocation.longitude}` ,description:''}}
+                  onSubmit={(values, {setSubmitting}) => { 
+                    if (values.description== ''){
+                      console.log(values)
+                      //handleMessage('Please fill the description');
+                      //setSubmitting(false);
+                    }else{
+                      console.log(values)
+                      //handleSignup(values, setSubmitting);
+                    }
+
+                  }}
+                  >
+                  {({handleChange, handleBlur, handleSubmit, values, isSubmitting}) => (
+                    <StyledFormArea>
+                      <UploadTextInput
+                      editable={false}               
+                      onBlur = {handleBlur('latitude')}   
+                      value={values.latitude}  
+                      />
+                      <UploadTextInput 
+                      editable={false}
+                      onBlur = {handleBlur('longitude')}  
+                      value={values.longitude}  
+                      />
+                      <DescriptionTextInput 
+                      multiline={true}
+                      placeholder="Γράψτε μια περιγραφή (πχ διεύθηνση, τύπος σκουπιδιών)" 
+                      placeholderTextColor = {Colors.darkLight}
+                      onChangeText= {handleChange('description')}
+                      onBlur = {handleBlur('description')}
+                      value={values.description}
+                      />
+                      <MsgBox>...</MsgBox>
+
+                      {!isSubmitting && <StyledButton name='upload' onPress={handleSubmit}>
+                        <ButtonText>
+                          Αναφορά
+                        </ButtonText>
+                      </StyledButton>}
+
+                      {isSubmitting && <StyledButton disabled={true}>
+                        <ActivityIndicator size='large' color={Colors.primary} />
+                      </StyledButton>}
+
+                    </StyledFormArea>
+                  )}
+                </Formik>
+              </InnerContainer>
+            </KeyboardWrapper>
           )}
         </MapOverlay>
       )}
     </MapContainer>
-  )
-}
+  );
+};
