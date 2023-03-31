@@ -55,9 +55,9 @@ const RootStack = () => {
 
                 
                     })}>
-                      <Tab.Screen name="Welcome" component={Welcome} />
+                      <Tab.Screen options={{ headerShown: false }} name="Welcome" component={Welcome} />
                       <Tab.Screen options={{ headerShown: false }} name="Maps" component={Maps} />
-                      <Tab.Screen name="Calendar" component={Calendar} />
+                      <Tab.Screen options={{ headerShown: false }} name="Calendar" component={Calendar} />
                     </Tab.Navigator>
                   )}
                 </Stack.Screen>

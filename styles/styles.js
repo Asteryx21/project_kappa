@@ -139,9 +139,31 @@ export const TextLinkContent = styled.Text`
     font-size: 15px;
 `;
 
+export const ToggleButtons = styled.View`
+    background-color: #90ee90 ;
+    border-radius: 10px;
+    position: absolute;
+    width: 100%;
+    flex: 1;
+    flex-direction: row;
+    gap: 1px;
+    top: 20px;
+    padding: 5px;
+    z-index: 1000;
+`;
+
+export const ToggleButton = styled.TouchableOpacity`
+    background-color: ${green};
+    padding: 15px;
+    border-radius:20px; 
+    border-width: 2px;
+    justify-content: center;
+    width: 85px;
+`;
+
 export const MapContainer = styled.View`
     flex: 1;
-    background-color: ${primary};
+    background-color:' ${primary}';
     align-items: center;
     justify-content: center;
 `;

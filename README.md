@@ -17,3 +17,4 @@
 - Remember the user when he logs in once (AsyncStorage)
 - React native maps load data from database
 - Overlay when you click map markers
+- Map sections is complete (user can upload a reported area).
