@@ -18,3 +18,8 @@
 - React native maps load data from database
 - Overlay when you click map markers
 - Map sections is complete (user can upload a reported area).
+- Completed calendar functionality.
+
+## Issues / to be done:
+
+- Dynamicly fetch images on require() tag on the Maps reported areas.
