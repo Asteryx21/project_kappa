@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { Text, View, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-
+import {SERVER_HOST} from '@env'
 import {Formik} from 'formik';
 
 import {
@@ -34,6 +34,7 @@ export default function Maps() {
   const [messageType, setMessageType] = useState();
   const [showRedMarkers, setShowRedMarkers] = useState(true);
   const [showGreenMarkers, setShowGreenMarkers] = useState(true);
+  const [selectedImage, setSelectedImage] = useState();
 
   const handleRedMarkersToggle = () => {
     setShowRedMarkers(!showRedMarkers);
@@ -44,7 +45,7 @@ export default function Maps() {
   };
 
   useEffect(() => {
-    fetch('http://192.168.1.240/test/get_locations.php')
+    fetch(`http://${SERVER_HOST}/test/get_locations.php`)
       .then(response => response.json())
       .then(data => setLocations(data))
       .catch(error => console.error(error));
@@ -69,7 +70,7 @@ export default function Maps() {
 
   const handleUpload = async(values, selectedImage, setSubmitting) => {
     handleMessage(null);
-    const APIURL = "http://localhost/test/report.php";
+    const APIURL = `http://${SERVER_HOST}/test/report.php`;
    const data = {
       uri: selectedImage.uri,
       base64: selectedImage.base64,

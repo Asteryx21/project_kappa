@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import {SERVER_HOST} from '@env'
 
 const CodeVerification = ({navigation}) => {
 
@@ -14,7 +15,7 @@ const CodeVerification = ({navigation}) => {
    
       const otp_code = {otp:otp};
      
-      const APIURL = "http://localhost/test/otp.php";
+      const APIURL = `http://${SERVER_HOST}/test/otp.php`;
   
       const headers = {
         'Accept' : 'application/json',

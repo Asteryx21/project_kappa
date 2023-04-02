@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import {ActivityIndicator, View} from 'react-native';
+import {SERVER_HOST} from '@env'
 
 
 import { StatusBar } from 'expo-status-bar';
@@ -42,7 +43,7 @@ export default function Login({navigation})  {
 
   const handleLogin = (credentials, setSubmitting) => {
     handleMessage(null);
-    const APIURL = "http://localhost/test/login.php";
+    const APIURL = `http://${SERVER_HOST}/test/login.php`;
 
     credentials.login = 'true' ;
 

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import {View, ActivityIndicator} from 'react-native';
-
+import {SERVER_HOST} from '@env'
 import { StatusBar } from 'expo-status-bar';
 import {Formik} from 'formik';
 import {Octicons, Ionicons} from '@expo/vector-icons'
@@ -37,7 +37,7 @@ export default function Signup({navigation})  {
 
   const handleSignup = (credentials, setSubmitting) => {
     handleMessage(null);
-    const APIURL = "http://localhost/test/signup.php";
+    const APIURL = `http://${SERVER_HOST}/test/signup.php`;
 
     credentials.login = 'true' ;
 

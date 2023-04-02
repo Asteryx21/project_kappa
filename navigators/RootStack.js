@@ -10,7 +10,7 @@ import Signup from '../screens/Signup'
 import Welcome from '../screens/Welcome'
 import CodeVerification from '../screens/CodeVerification';
 import Maps from '../screens/Maps'
-import Calendar from '../screens/Calendar';
+import CalendarScreen from '../screens/CalendarScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Colors } from '../styles/styles';
 
@@ -39,7 +39,7 @@ const RootStack = () => {
                             } else if (route.name == 'Maps'){
                                 iconName = focused ?  'ios-map' : 'ios-map-outline'
                                 size = focused ? size + 8 : size + 5;
-                            } else if (route.name == 'Calendar'){
+                            } else if (route.name == 'CalendarScreen'){
                                 iconName = focused ?  'ios-calendar' : 'ios-calendar-outline'
                                 size = focused ? size + 8 : size + 5;
                             }
@@ -57,7 +57,7 @@ const RootStack = () => {
                     })}>
                       <Tab.Screen options={{ headerShown: false }} name="Welcome" component={Welcome} />
                       <Tab.Screen options={{ headerShown: false }} name="Maps" component={Maps} />
-                      <Tab.Screen options={{ headerShown: false }} name="Calendar" component={Calendar} />
+                      <Tab.Screen options={{ headerShown: false }} name="CalendarScreen" component={CalendarScreen} />
                     </Tab.Navigator>
                   )}
                 </Stack.Screen>

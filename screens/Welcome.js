@@ -18,9 +18,9 @@ import {StyledButton, ButtonText} from '../styles/styles'
 export default function Welcome() {
 
   const {storedCredentials, setStoredCredentials} = useContext(CredentialsContext)
-  const {name, email} = storedCredentials;
+  const { name, email} = storedCredentials;
 
-  console.log(name, email);
+
 
   const clearLogin = () =>{
     AsyncStorage
