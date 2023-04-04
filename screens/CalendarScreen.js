@@ -26,14 +26,20 @@ export default function CalendarScreen() {
     getData();
   }, []);
 
-  const renderItem = (item) => {
+  const renderItem = (item) => {    
     return (
       <TouchableOpacity style={styles.itemContainer} onPress={() => openModal(item)}>
         <Text>{item.title}</Text>
       </TouchableOpacity>
     );
   };
-
+  const renderEmptyData = () => {
+    return (
+      <View style={styles.itemContainer}>
+        <Text>No event today</Text>
+      </View>
+    );
+  };
   const openModal = (item) => {
     const APIURL = `http://${SERVER_HOST}/test/update_participants.php`;
     const data = {
@@ -150,7 +156,7 @@ export default function CalendarScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <Agenda items={items} renderItem={renderItem} />
+      <Agenda items={items} renderItem={renderItem}  renderEmptyData={renderEmptyData}/>
       {modal}
     </SafeAreaView>
   );

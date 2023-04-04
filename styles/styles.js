@@ -147,9 +147,10 @@ export const ToggleButtons = styled.View`
     flex: 1;
     flex-direction: row;
     gap: 1px;
-    top: 20px;
+    top: 0px;
     padding: 5px;
     z-index: 1000;
+    padding-top: ${StatusBarHeight + 10}px;
 `;
 
 export const ToggleButton = styled.TouchableOpacity`
@@ -159,6 +160,7 @@ export const ToggleButton = styled.TouchableOpacity`
     border-width: 2px;
     justify-content: center;
     width: 85px;
+    
 `;
 
 export const MapContainer = styled.View`
@@ -166,6 +168,7 @@ export const MapContainer = styled.View`
     background-color:' ${primary}';
     align-items: center;
     justify-content: center;
+    padding-top: ${StatusBarHeight + 10}px;
 `;
 
 export const MapOverlay = styled.View`

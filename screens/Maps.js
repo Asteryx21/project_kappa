@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { Text, View, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Text, View, Image, TouchableOpacity, ActivityIndicator,PermissionsAndroid } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import {SERVER_HOST} from '@env'
+import {SERVER_HOST} from '@env';
 import {Formik} from 'formik';
 
 import {
@@ -23,9 +23,32 @@ import {
 
 import KeyboardWrapper from '../KeyboardWrapper';
 
-
+async function requestLocationPermission() {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: 'Location Permission',
+        message:
+          'This app needs access to your location ' +
+          'so we can show your current location on the map.',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log('Location permission granted');
+    } else {
+      console.log('Location permission denied');
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+}
+requestLocationPermission();
 export default function Maps() {
-
+  
   const [locations, setLocations] = useState([]);
   const [showOverlay, setShowOverlay] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
