@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {View, Text, Image, TextInput,TouchableOpacity } from 'react-native'
+import {View, Text, Image, TextInput,TouchableOpacity, ScrollView } from 'react-native'
 import  Constants from 'expo-constants';
 
 const StatusBarHeight = Constants.statusBarHeight;
@@ -169,10 +169,12 @@ export const MapContainer = styled.View`
     align-items: center;
     justify-content: center;
     padding-top: ${StatusBarHeight + 10}px;
+
 `;
 
-export const MapOverlay = styled.View`
+export const MapOverlay = styled.ScrollView`
   position: absolute;
+  z-index: 1000;
   border-width: 2px;
   border-radius: 5px;
   background-color: ${primary};

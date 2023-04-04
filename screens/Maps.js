@@ -163,7 +163,7 @@ export default function Maps() {
 
 
   return (
-    <MapContainer>
+      <MapContainer>
       <ToggleButtons>
         <ToggleButton onPress={handleRedMarkersToggle}>
           <Image source={{ uri: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png' }} style={{width: 15, height: 25, alignSelf: 'center' }} />
@@ -228,12 +228,11 @@ export default function Maps() {
           {selectedLocation.type === 'Red' && (
             <View>
               <Text>{selectedLocation.description}</Text>
-              <Image style={{ height: 100, width: 100 }} source={require('../assets/9333871.png')} />
+              <Image style={{ height: 100, width: 100 }} source={require('../assets/trash.jpeg')} />
             </View>
           )}
           {selectedLocation.type === 'undefined' && (
             <KeyboardWrapper>
-            
               <InnerContainer>
                 <SubTitle>Αναφορά περιοχής</SubTitle>
                 <Formik
@@ -288,12 +287,12 @@ export default function Maps() {
                     </StyledFormArea>
                   )}
                 </Formik>
-              </InnerContainer>
-            </KeyboardWrapper>
+              </InnerContainer>    
+              </KeyboardWrapper>   
           )}
         </MapOverlay>
+       
       )}
-
-    </MapContainer>
+      </MapContainer>
   );
 };
